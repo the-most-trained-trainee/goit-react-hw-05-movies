@@ -5,7 +5,6 @@ import MovieDetails from './MovieDetails';
 import Cast from './Cast';
 import Reviews from './Reviews';
 
-// /trending/get-trending список найпопулярніших фільмів на сьогодні для створення колекції на головній сторінці.
 // /search/search-movies пошук фільму за ключовим словом на сторінці фільмів.
 // /movies/get-movie-details запит повної інформації про фільм для сторінки кінофільму.
 // /movies/get-movie-credits запит інформації про акторський склад для сторінки кінофільму.
@@ -17,6 +16,7 @@ export const App = () => {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/movies">Movies</Link>
+        <hr />
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
