@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import { getTrendMovies } from './movieDataBaseRequest';
 import MovieDetails from './MovieDetails';
 
@@ -19,24 +19,15 @@ const Home = () => {
     getTrending();
   }, []);
 
-  const getMovieByID = id => {
-    return trends.find(movie => movie.id === id);
-  };
-
   return (
     <>
       <ul>
         {trends.map(film => (
           <li key={film.id}>
-            <a href={`https://image.tmdb.org/t/p/w500` + film.poster_path}>
-              {film.original_title}
-            </a>
+            <Link to={`${film.id}`}>{film.original_title}</Link>
           </li>
         ))}
       </ul>
-      <Outlet />
-      <h1>Move Details Test</h1>
-      {/* <MovieDetails movieInfo={getMovieByID} /> */}
     </>
   );
 };
