@@ -10,18 +10,8 @@ const getFoundMovies = async (request) => {
   return foundMovies.json();
 }
 
-// export const getProductById = (productId) => {
-//   return products.find((product) => product.id === productId);
-// };
-
 const getMovieByID = async (id) => {
-
-  const movie = await fetch(`https://api.themoviedb.org/3/movie/899112?api_key=8562b39677dad16e2334fc338fdc606e&language=en-US`);
-
-  
-  // const movie = await fetch(`https://api.themoviedb.org/3/find/${id}?api_key=${API_KEY}&language=en-US&external_source=imdb_id`);
-
-
+  const movie = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=8562b39677dad16e2334fc338fdc606e&language=en-US`);
   return movie.json();
 };
 
