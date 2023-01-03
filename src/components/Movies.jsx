@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link, useSearchParams } from 'react-router-dom';
 import { getFoundMovies } from './movieDataBaseRequest';
+
+//https://youtu.be/pSPXlJFn1Bw?t=2824
 
 const Movies = () => {
   const [searchInput, setSearchInput] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
 
-  const handleChange = e => setSearchInput(e.currentTarget.value);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleChange = e => {
+    setSearchInput(e.currentTarget.value);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -14,6 +20,7 @@ const Movies = () => {
       alert('Please enter a valid request!');
       return;
     }
+    setSearchParams({ query: searchInput });
     receiveFound();
   };
 
@@ -38,11 +45,15 @@ const Movies = () => {
           value={searchInput}
         />
       </form>
+
       <ul>
         {foundMovies.map(film => (
-          <li key={film.id}>{film.original_title}</li>
+          <li key={film.id}>
+            <Link to={`${film.id}`}>{film.original_title}</Link>
+          </li>
         ))}
       </ul>
+
       <Outlet />
     </>
   );

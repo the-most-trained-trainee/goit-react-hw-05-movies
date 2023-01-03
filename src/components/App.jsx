@@ -10,13 +10,13 @@ export const App = () => {
     <div>
       <nav>
         <Link to="/">Home</Link>
+        <span>  </span>
         <Link to="/movies">Movies</Link>
         <hr />
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:movieId" element={<MovieDetails />} />
-
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:movieId" element={<MovieDetails />}>
           <Route path="/movies/:movieId/cast" element={<Cast />} />

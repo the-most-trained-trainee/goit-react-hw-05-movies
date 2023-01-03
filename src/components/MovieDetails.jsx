@@ -23,7 +23,8 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <button>Back</button>
+      <button> Back</button>
+
       <div className="movieinfo-container">
         <img
           className="movie-img"
