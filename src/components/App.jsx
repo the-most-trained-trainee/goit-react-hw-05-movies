@@ -1,9 +1,15 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+
 import Home from './Home';
+// const Home = lazy(() => import('./Home'));
 import Movies from './Movies';
+// const Movies = lazy(() => import('./Movies'));
 import MovieDetails from './MovieDetails';
-import Cast from './Cast';
-import Reviews from './Reviews';
+// const MovieDetails = lazy(() => import('./MovieDetails'));
+
+const Cast = lazy(() => import('./Cast'));
+const Reviews = lazy(() => import('./Reviews'));
 
 export const App = () => {
   return (
@@ -14,6 +20,7 @@ export const App = () => {
         <Link to="/movies">Movies</Link>
         <hr />
       </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:movieId" element={<MovieDetails />} />

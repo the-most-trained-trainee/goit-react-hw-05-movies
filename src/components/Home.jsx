@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import { getTrendMovies } from './movieDataBaseRequest';
 
 const Home = () => {
@@ -25,6 +25,7 @@ const Home = () => {
           </li>
         ))}
       </ul>
+
     </>
   );
 };
