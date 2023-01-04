@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, Link, useSearchParams, useLocation } from 'react-router-dom';
+import { Outlet, Link, useSearchParams } from 'react-router-dom';
 import { getFoundMovies } from './movieDataBaseRequest';
 
 const Movies = () => {

@@ -10,7 +10,7 @@ export const App = () => {
     <div>
       <nav>
         <Link to="/">Home</Link>
-        <span>  </span>
+        <span> </span>
         <Link to="/movies">Movies</Link>
         <hr />
       </nav>
