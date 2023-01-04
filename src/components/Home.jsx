@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getTrendMovies } from './movieDataBaseRequest';
 
 const Home = () => {
@@ -19,7 +19,9 @@ const Home = () => {
       <ul>
         {trends.map(film => (
           <li key={film.id}>
-            <Link to={`movies/${film.id}`}>{film.original_title}</Link>
+            <Link to={`movies/${film.id}`} state={{ from: '/' }}>
+              {film.original_title}
+            </Link>
           </li>
         ))}
       </ul>

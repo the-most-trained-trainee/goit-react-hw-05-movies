@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useParams, Link } from 'react-router-dom';
+import {
+  Outlet,
+  useParams,
+  Link,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import { getMovieByID } from './movieDataBaseRequest';
-
-// back button https://www.youtube.com/watch?v=pSPXlJFn1Bw
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({
@@ -17,18 +21,24 @@ const MovieDetails = () => {
   });
   const { movieId } = useParams();
 
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
+  const goBack = () => navigate(`${location.state.from}`);
+
   useEffect(() => {
     getMovieByID(movieId).then(res => setMovie(res));
   }, [movieId]);
 
   return (
     <div>
-      <button> Back</button>
+      <button onClick={goBack}> Back</button>
 
       <div className="movieinfo-container">
         <img
           className="movie-img"
-          src={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
+          src={'https://image.tmdb.org/t/p/w500' + movie.poster_path}
           alt=""
         />
         <div className="movieinfo">
@@ -40,9 +50,13 @@ const MovieDetails = () => {
           <p>{movie.overview}</p>
           <h2>Genres</h2>
           <p>{movie.genres.map(x => x.name + ' ')}</p>
-          <Link to="reviews">reviews</Link>
+          <Link to="reviews" state={{ from: `${location.state.from}` }}>
+            reviews
+          </Link>
           <span> </span>
-          <Link to="cast">cast</Link>
+          <Link to="cast" state={{ from: `${location.state.from}` }}>
+            cast
+          </Link>
         </div>
       </div>
       <Outlet />

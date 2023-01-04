@@ -1,14 +1,18 @@
-import { useState } from 'react';
-import { Outlet, Link, useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Outlet, Link, useSearchParams, useLocation } from 'react-router-dom';
 import { getFoundMovies } from './movieDataBaseRequest';
-
-//https://youtu.be/pSPXlJFn1Bw?t=2824
 
 const Movies = () => {
   const [searchInput, setSearchInput] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
-
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.get('query')) {
+      setSearchInput(searchParams.get('query'));
+      receiveFound(searchParams.get('query'));
+    }
+  }, [searchParams]);
 
   const handleChange = e => {
     setSearchInput(e.currentTarget.value);
@@ -21,11 +25,10 @@ const Movies = () => {
       return;
     }
     setSearchParams({ query: searchInput });
-    receiveFound();
   };
 
-  const receiveFound = async () => {
-    const found = await getFoundMovies(searchInput);
+  const receiveFound = async request => {
+    const found = await getFoundMovies(request);
     setFoundMovies(found.results);
   };
 
@@ -45,15 +48,19 @@ const Movies = () => {
           value={searchInput}
         />
       </form>
-
       <ul>
-        {foundMovies.map(film => (
-          <li key={film.id}>
-            <Link to={`${film.id}`}>{film.original_title}</Link>
-          </li>
-        ))}
+        {foundMovies &&
+          foundMovies.map(film => (
+            <li key={film.id}>
+              <Link
+                to={`${film.id}`}
+                state={{ from: '/movies?query=' + searchInput }}
+              >
+                {film.original_title}
+              </Link>
+            </li>
+          ))}
       </ul>
-
       <Outlet />
     </>
   );
