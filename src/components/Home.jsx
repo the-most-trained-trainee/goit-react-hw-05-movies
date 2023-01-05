@@ -1,5 +1,5 @@
-import { useState, useEffect, Suspense } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getTrendMovies } from './movieDataBaseRequest';
 
 const Home = () => {
@@ -16,6 +16,7 @@ const Home = () => {
 
   return (
     <>
+    <h2>Trending today</h2>
       <ul>
         {trends.map(film => (
           <li key={film.id}>

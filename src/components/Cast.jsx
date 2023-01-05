@@ -12,20 +12,23 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <ul>
-      {cast &&
-        cast.map(actor => (
-          <li key={actor.id}>
-            <h3>{actor.name}</h3>
-            <p>{actor.character}</p>
-            <img
-              className="movie-img"
-              src={'https://image.tmdb.org/t/p/w300' + actor.profile_path}
-              alt=""
-            />
-          </li>
-        ))}
-    </ul>
+    <>
+      {cast && (
+        <ul>
+          {cast.map(actor => (
+            <li key={actor.id}>
+              <h3>{actor.name}</h3>
+              <p>{actor.character}</p>
+              <img
+                className="movie-img"
+                src={'https://image.tmdb.org/t/p/w300' + actor.profile_path}
+                alt=""
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 

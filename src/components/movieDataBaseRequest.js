@@ -61,4 +61,45 @@ const getMovieCast = async (id) => {
   return adaptedCast;
 }
 
+
+// const movieDetailsAdaptation = input => {
+//   return {
+//     id: input.id,
+//     title: input.title,
+//     overview: input.overview,
+//     release_date: input.release_date,
+//     genres: input.genres,
+//     popularity: input.popularity,
+//     vote_average: input.vote_average,
+//     poster_path: input.poster_path,
+//   };
+// };
+
+// {movie && (
+//   <div className="movieinfo-container">
+//     <img
+//       className="movie-img"
+//       src={'https://image.tmdb.org/t/p/w500' + movie.poster_path}
+//       alt=""
+//     />
+//     <div className="movieinfo">
+//       <h1>
+//         {movie.title} ({movie.release_date.slice(0, 4)})
+//       </h1>
+//       <p>User score: {Math.ceil(movie.vote_average * 10)} %</p>
+//       <h2>Overview</h2>
+//       <p>{movie.overview}</p>
+//       <h2>Genres</h2>
+//       <p>{movie.genres.map(x => x.name + ' ')}</p>
+//       <Link to="reviews" state={{ from: `${location.state.from}` }}>
+//         reviews
+//       </Link>
+//       <span> </span>
+//       <Link to="cast" state={{ from: `${location.state.from}` }}>
+//         cast
+//       </Link>
+//     </div>
+//   </div>
+// )}
+
 export { getTrendMovies, getFoundMovies, getMovieByID, getMovieReviews, getMovieCast };
