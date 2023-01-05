@@ -15,11 +15,11 @@ const movieDetailsAdaptation = input => {
     id: input.id,
     title: input.title,
     overview: input.overview,
-    release_date: input.release_date,
-    genres: input.genres,
+    release_date: input.release_date.slice(0, 4),
+    genres: input.genres.map(x => x.name + ' '),
     popularity: input.popularity,
-    vote_average: input.vote_average,
-    poster_path: input.poster_path,
+    vote_average: Math.ceil(input.vote_average * 10),
+    poster_path: 'https://image.tmdb.org/t/p/w500' + input.poster_path,
   };
 };
 
@@ -50,7 +50,7 @@ const castAdapation = input =>
     id: actor.credit_id,
     name: actor.name,
     character: actor.character,
-    profile_path: actor.profile_path,
+    profile_path: 'https://image.tmdb.org/t/p/w300' + actor.profile_path,
   }));
 
 const getMovieCast = async (id) => {
@@ -60,46 +60,5 @@ const getMovieCast = async (id) => {
   const adaptedCast = castAdapation(castReceived);
   return adaptedCast;
 }
-
-
-// const movieDetailsAdaptation = input => {
-//   return {
-//     id: input.id,
-//     title: input.title,
-//     overview: input.overview,
-//     release_date: input.release_date,
-//     genres: input.genres,
-//     popularity: input.popularity,
-//     vote_average: input.vote_average,
-//     poster_path: input.poster_path,
-//   };
-// };
-
-// {movie && (
-//   <div className="movieinfo-container">
-//     <img
-//       className="movie-img"
-//       src={'https://image.tmdb.org/t/p/w500' + movie.poster_path}
-//       alt=""
-//     />
-//     <div className="movieinfo">
-//       <h1>
-//         {movie.title} ({movie.release_date.slice(0, 4)})
-//       </h1>
-//       <p>User score: {Math.ceil(movie.vote_average * 10)} %</p>
-//       <h2>Overview</h2>
-//       <p>{movie.overview}</p>
-//       <h2>Genres</h2>
-//       <p>{movie.genres.map(x => x.name + ' ')}</p>
-//       <Link to="reviews" state={{ from: `${location.state.from}` }}>
-//         reviews
-//       </Link>
-//       <span> </span>
-//       <Link to="cast" state={{ from: `${location.state.from}` }}>
-//         cast
-//       </Link>
-//     </div>
-//   </div>
-// )}
 
 export { getTrendMovies, getFoundMovies, getMovieByID, getMovieReviews, getMovieCast };

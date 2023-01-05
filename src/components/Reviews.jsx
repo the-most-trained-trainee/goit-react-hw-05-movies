@@ -13,7 +13,9 @@ const Reviews = () => {
 
   return (
     <>
-      {reviews && (
+      {reviews ? (
+        <p>We don' have any reviews for this movie.</p>
+      ) : (
         <ul>
           {reviews.map(review => (
             <li key={review.id}>
@@ -23,6 +25,16 @@ const Reviews = () => {
           ))}
         </ul>
       )}
+      {/* {reviews && (
+        <ul>
+          {reviews.map(review => (
+            <li key={review.id}>
+              <h3>{review.author}</h3>
+              <p>{review.content}</p>
+            </li>
+          ))}
+        </ul>
+      )} */}
     </>
   );
 };

@@ -23,3 +23,8 @@ code {
   flex-direction: row;
   gap: 30px;
 }
+
+.active {
+  color: rgb(12, 105, 69);
+  font-weight: 900;
+}

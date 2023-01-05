@@ -27,20 +27,16 @@ const MovieDetails = () => {
       <button onClick={goBack}> Back</button>
       {movie && (
         <div className="movieinfo-container">
-          <img
-            className="movie-img"
-            src={'https://image.tmdb.org/t/p/w500' + movie.poster_path}
-            alt=""
-          />
+          <img className="movie-img" src={movie.poster_path} alt="" />
           <div className="movieinfo">
             <h1>
-              {movie.title} ({movie.release_date.slice(0, 4)})
+              {movie.title} ({movie.release_date})
             </h1>
-            <p>User score: {Math.ceil(movie.vote_average * 10)} %</p>
+            <p>User score: {movie.vote_average} %</p>
             <h2>Overview</h2>
             <p>{movie.overview}</p>
             <h2>Genres</h2>
-            <p>{movie.genres.map(x => x.name + ' ')}</p>
+            <p>{movie.genres}</p>
             <Link to="reviews" state={{ from: `${location.state.from}` }}>
               reviews
             </Link>
