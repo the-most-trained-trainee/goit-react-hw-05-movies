@@ -2,25 +2,13 @@ import { useState, useEffect } from 'react';
 import { getMovieCast } from './movieDataBaseRequest';
 import { useParams } from 'react-router-dom';
 
-const castAdapation = input => {
-  return input.map(
-    actor =>
-      new Object({
-        id: actor.id,
-        name: actor.name,
-        character: actor.character,
-        profile_path: actor.profile_path,
-      })
-  );
-};
-
 const Cast = () => {
   const [cast, setCast] = useState([]);
 
   const { movieId } = useParams();
 
   useEffect(() => {
-    getMovieCast(movieId).then(res => setCast(castAdapation(res.cast)));
+    getMovieCast(movieId).then(res => setCast(res));
   }, [movieId]);
 
   return (
