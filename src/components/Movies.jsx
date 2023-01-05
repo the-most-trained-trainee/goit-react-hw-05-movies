@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Outlet, Link, useSearchParams } from 'react-router-dom';
 import { getFoundMovies } from './movieDataBaseRequest';
 
@@ -61,7 +61,9 @@ const Movies = () => {
             </li>
           ))}
       </ul>
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
