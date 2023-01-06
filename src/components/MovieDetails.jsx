@@ -14,7 +14,8 @@ const MovieDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const goBack = () => navigate(`${location.state.from}`);
+  const goBack = () => navigate(`/`);
+  // const goBack = () => navigate(`${location.state.from}`);
 
   useEffect(() => {
     getMovieByID(movieId).then(res => {
