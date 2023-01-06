@@ -14,11 +14,12 @@ const MovieDetails = () => {
   let location = useLocation();
   const navigate = useNavigate();
 
-  console.log(location);
-  // if (!location.state.from) {
-  //   console.log('no location')
-  //   location = { state: { from: '/' } };
-  // }
+  console.log((location.state = null));
+
+  if (!location.state) {
+    console.log('no location');
+    location = { state: { from: '/' } };
+  }
 
   const goBack = () => navigate(`${location.state.from}`);
   // console.log("location if");
