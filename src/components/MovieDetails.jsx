@@ -14,7 +14,7 @@ const MovieDetails = () => {
   let location = useLocation();
   const navigate = useNavigate();
 
-  console.log((location.state = null));
+  console.log((location.state === null));
 
   if (!location.state) {
     console.log('no location');
