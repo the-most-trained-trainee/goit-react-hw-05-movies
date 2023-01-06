@@ -14,7 +14,8 @@ const MovieDetails = () => {
   let location = useLocation();
   const navigate = useNavigate();
 
-  if (!location) {
+  if (!location.state.from) {
+    console.log('no location')
     location = { state: { from: '/' } };
   }
 
