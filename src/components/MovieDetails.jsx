@@ -11,12 +11,16 @@ import { getMovieByID } from './movieDataBaseRequest';
 const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const { movieId } = useParams();
-  const location = useLocation();
+  let location = useLocation();
   const navigate = useNavigate();
 
-  const goBack = () => navigate(`/`);
-  // const goBack = () => navigate(`${location.state.from}`);
-  console.log(location);
+  if (!location) {
+    location = { state: { from: '/' } };
+  }
+
+  const goBack = () => navigate(`${location.state.from}`);
+  console.log("location if");
+
 
   useEffect(() => {
     getMovieByID(movieId).then(res => {
@@ -39,13 +43,13 @@ const MovieDetails = () => {
             <p>{movie.overview}</p>
             <h2>Genres</h2>
             <p>{movie.genres}</p>
-            <Link to="reviews" state={{ from: `/` }}>
-              {/* <Link to="reviews" state={{ from: `${location.state.from}` }}> */}
+            {/* <Link to="reviews" state={{ from: `/` }}> */}
+            <Link to="reviews" state={{ from: `${location.state.from}` }}>
               reviews
             </Link>
             <span> </span>
-            <Link to="cast" state={{ from: `/` }}>
-              {/* <Link to="cast" state={{ from: `${location.state.from}` }}> */}
+            {/* <Link to="cast" state={{ from: `/` }}> */}
+            <Link to="cast" state={{ from: `${location.state.from}` }}>
               cast
             </Link>
           </div>
