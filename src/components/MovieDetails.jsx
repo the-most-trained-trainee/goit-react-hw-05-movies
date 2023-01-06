@@ -14,14 +14,14 @@ const MovieDetails = () => {
   let location = useLocation();
   const navigate = useNavigate();
 
-  if (!location.state.from) {
-    console.log('no location')
-    location = { state: { from: '/' } };
-  }
+  console.log(location);
+  // if (!location.state.from) {
+  //   console.log('no location')
+  //   location = { state: { from: '/' } };
+  // }
 
   const goBack = () => navigate(`${location.state.from}`);
-  console.log("location if");
-
+  // console.log("location if");
 
   useEffect(() => {
     getMovieByID(movieId).then(res => {
