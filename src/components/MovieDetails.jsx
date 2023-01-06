@@ -14,10 +14,6 @@ const MovieDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  if (!location) {
-    location.state.from = '/';
-  }
-
   const goBack = () => navigate(`${location.state.from}`);
 
   useEffect(() => {
@@ -41,11 +37,13 @@ const MovieDetails = () => {
             <p>{movie.overview}</p>
             <h2>Genres</h2>
             <p>{movie.genres}</p>
-            <Link to="reviews" state={{ from: `${location.state.from}` }}>
+            <Link to="reviews" state={{ from: `/` }}>
+            {/* <Link to="reviews" state={{ from: `${location.state.from}` }}> */}
               reviews
             </Link>
             <span> </span>
-            <Link to="cast" state={{ from: `${location.state.from}` }}>
+            <Link to="cast" state={{ from: `/` }}>
+            {/* <Link to="cast" state={{ from: `${location.state.from}` }}> */}
               cast
             </Link>
           </div>
